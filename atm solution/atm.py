@@ -9,7 +9,7 @@ class ATM:
         if request > self.balance:
             print("Can't give you all this money !!")
 
-        elif request < 0:
+        elif request <= 0:
             print("More than zero plz!")
 
         else:
