@@ -33,7 +33,7 @@ def withdraw(balance, request):
             elif request < 5:
                 print("give " + str(request))
                 request = 0
-        return balance
+    return balance
 
 balance = withdraw(balance, 277)
 balance = withdraw(balance, 30)
