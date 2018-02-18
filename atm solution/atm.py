@@ -35,6 +35,8 @@ class ATM:
                 elif request < 5:
                     print("give " + str(request))
                     request = 0
+		
+		return self.balance
 
 
 balance1 = 500
