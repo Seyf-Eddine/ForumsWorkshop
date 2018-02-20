@@ -16,32 +16,37 @@ class ATM:
         else:
             self.withdrawals_list.append(request)
             self.balance -= request
-            while request > 0:
+            self.process(request)
+            return self.balance
 
-                if request >= 100:
-                    request -= 100
-                    print("give 100")
+    @staticmethod
+    def process(request):
+        while request > 0:
 
-                elif request >= 50:
-                    request -= 50
-                    print("give 50")
+            if request >= 100:
+                request -= 100
+                print("give 100")
 
-                elif request >= 10:
-                    request -= 10
-                    print("give 10")
+            elif request >= 50:
+                request -= 50
+                print("give 50")
 
-                elif request >= 5:
-                    request -= 5
-                    print("give 5")
+            elif request >= 10:
+                request -= 10
+                print("give 10")
 
-                elif request < 5:
-                    print("give " + str(request))
-                    request = 0
-        return self.balance
+            elif request >= 5:
+                request -= 5
+                print("give 5")
+
+            elif request < 5:
+                print("give " + str(request))
+                request = 0
 
     def show_withdrawals(self):
         for withdrawl in self.withdrawals_list:
             print withdrawl
+
 
 balance1 = 500
 balance2 = 1000
