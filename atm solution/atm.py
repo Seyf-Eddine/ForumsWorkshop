@@ -17,7 +17,7 @@ class ATM:
             self.withdrawals_list.append(request)
             self.balance -= request
             self.process(request)
-            return self.balance
+        return self.balance
 
     @staticmethod
     def process(request):
