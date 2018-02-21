@@ -46,6 +46,12 @@ class PostStore():
             if id == post.id:
                 return post
 
+    def entity_exists(self, post):
+        result = True
+        if self.get_by_id(post.id) is None:
+            result = False
+        return result
+
     def delete(self, id):
         post = self.get_by_id(id)
         if post is not None:
