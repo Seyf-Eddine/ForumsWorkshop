@@ -16,6 +16,7 @@ class MemberStore():
         for member in all_members:
             if id == member.id:
                 result = member
+                break
         return result
 
     def entity_exists(self, member):
@@ -46,6 +47,7 @@ class PostStore():
         for post in all_posts:
             if id == post.id:
                 result = post
+                break
         return result
 
     def entity_exists(self, post):
