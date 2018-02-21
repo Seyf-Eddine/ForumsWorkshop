@@ -38,12 +38,10 @@ class MemberStore():
 
     def update(self, member):
         all_members = self.get_all()
-        index = 0
-        for member_to_update in all_members:
+        for index, member_to_update in enumerate(all_members):
             if member.id == member_to_update.id:
                 self.members[index] = member
                 break
-            index += 1
 
 
 class PostStore():
@@ -78,9 +76,8 @@ class PostStore():
 
     def update(self, post):
         all_posts = self.get_all()
-        index = 0
-        for post_to_update in all_posts:
+
+        for index, post_to_update in enumerate(all_posts):
             if post.id == post_to_update.id:
                 self.posts[index] = post
                 break
-            index += 1
