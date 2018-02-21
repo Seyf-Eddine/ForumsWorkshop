@@ -19,6 +19,14 @@ class MemberStore():
                 break
         return result
 
+    def get_by_name(self, name):
+        all_members = self.get_all()
+        result = []
+        for member in all_members:
+            if name == member.name:
+                result.append(member)
+        return result
+
     def entity_exists(self, member):
         result = True
         if self.get_by_id(member.id) is None:
@@ -27,6 +35,15 @@ class MemberStore():
 
     def delete(self, id):
         MemberStore.members.remove(self.get_by_id(id))
+
+    def update(self, member):
+        all_members = self.get_all()
+        index = 0
+        for member_to_update in all_members:
+            if member.id == member_to_update.id:
+                self.members[index] = member
+                break
+            index += 1
 
 
 class PostStore():
@@ -58,3 +75,12 @@ class PostStore():
 
     def delete(self, id):
         PostStore.posts.remove(self.get_by_id(id))
+
+    def update(self, post):
+        all_posts = self.get_all()
+        index = 0
+        for post_to_update in all_posts:
+            if post.id == post_to_update.id:
+                self.posts[index] = post
+                break
+            index += 1
