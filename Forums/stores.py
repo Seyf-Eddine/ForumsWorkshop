@@ -23,10 +23,8 @@ class MemberStore():
         return result
 
     def delete(self, id):
-        try:
-            MemberStore.members.remove(self.get_by_id(id))
-        except:
-            print("Member doesn't exist")
+        MemberStore.members.remove(self.get_by_id(id))
+
 
 
 class PostStore():
@@ -54,7 +52,4 @@ class PostStore():
         return result
 
     def delete(self, id):
-        try:
-            PostStore.posts.remove(self.get_by_id(id))
-        except:
-            print("Post doesn't exist")
+        PostStore.posts.remove(self.get_by_id(id))

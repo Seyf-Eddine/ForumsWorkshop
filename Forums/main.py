@@ -23,10 +23,12 @@ print memberStore.get_by_id(2)
 
 print memberStore.entity_exists(member3)
 
-memberStore.delete(2)
-memberStore.delete(3)
-
-postStore.delete(1)
+try:
+    memberStore.delete(2)
+    memberStore.delete(3)
+    postStore.delete(1)
+except ValueError:
+    print "Can't delete"
 
 for member in memberStore.get_all():
     print member.name + " " + str(member.age)
