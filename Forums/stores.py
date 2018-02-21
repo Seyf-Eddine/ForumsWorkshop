@@ -12,9 +12,11 @@ class MemberStore():
 
     def get_by_id(self, id):
         all_members = self.get_all()
+        result = None
         for member in all_members:
             if id == member.id:
-                return member
+                result = member
+        return result
 
     def entity_exists(self, member):
         result = True
@@ -24,7 +26,6 @@ class MemberStore():
 
     def delete(self, id):
         MemberStore.members.remove(self.get_by_id(id))
-
 
 
 class PostStore():
@@ -41,9 +42,11 @@ class PostStore():
 
     def get_by_id(self, id):
         all_posts = self.get_all()
+        result = None
         for post in all_posts:
             if id == post.id:
-                return post
+                result = post
+        return result
 
     def entity_exists(self, post):
         result = True
