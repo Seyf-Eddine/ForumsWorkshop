@@ -4,12 +4,13 @@ import stores
 memberStore = stores.MemberStore()
 postStore = stores.PostStore()
 
-member1 = models.Member("Seif Eddine", 26)
-member2 = models.Member("Mez", 22)
+member1 = models.Member(0, "Seif Eddine", 26)
+member2 = models.Member(0, "Mez", 22)
+member3 = models.Member(0, "testmember", 20)
 
-post1 = models.Post("post1_title","here is post1 content this is a simple text")
-post2 = models.Post("post2_title","here is post2 content this is a simple text")
-post3 = models.Post("post3_title","here is post2 content this is a simple text")
+post1 = models.Post(0, "post1_title","here is post1 content this is a simple text")
+post2 = models.Post(0, "post2_title","here is post2 content this is a simple text")
+post3 = models.Post(0, "post3_title","here is post2 content this is a simple text")
 
 memberStore.add(member1)
 memberStore.add(member2)
@@ -17,6 +18,15 @@ memberStore.add(member2)
 postStore.add(post1)
 postStore.add(post2)
 postStore.add(post3)
+
+print memberStore.get_by_id(2)
+
+print memberStore.entity_exists(member3)
+
+memberStore.delete(2)
+memberStore.delete(3)
+
+postStore.delete(1)
 
 for member in memberStore.get_all():
     print member.name + " " + str(member.age)
