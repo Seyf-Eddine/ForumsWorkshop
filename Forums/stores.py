@@ -19,13 +19,8 @@ class MemberStore():
                 break
         return result
 
-    def get_by_name(self, name):
-        all_members = self.get_all()
-        result = []
-        for member in all_members:
-            if name == member.name:
-                result.append(member)
-        return result
+    def get_by_name(self, member_name):
+        return (member for member in self.get_all() if member.name == member_name)
 
     def entity_exists(self, member):
         result = True
@@ -42,6 +37,21 @@ class MemberStore():
             if member.id == member_to_update.id:
                 self.members[index] = member
                 break
+
+    def get_members_with_posts(self, all_posts):
+        all_members = self.get_all()
+        result = []
+        for member in all_members:
+            for post in all_posts:
+                if member.id == post.member_id:
+                    member.posts.append(post)
+            result.append(member)
+        return result
+
+    def get_top_two(self, all_posts):
+        members_with_posts = self.get_members_with_posts(all_posts)
+        sorted_members = sorted(members_with_posts, key=lambda x: len(x.posts), reverse=True)
+        return sorted_members[:2]
 
 
 class PostStore():
