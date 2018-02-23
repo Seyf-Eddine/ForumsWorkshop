@@ -66,3 +66,6 @@ class PostStore(BaseStore, object):
 
     def __init__(self):
         super(PostStore, self).__init__(PostStore.posts, PostStore.last_id)
+
+    def get_posts_by_date(self):
+        return sorted(self.get_all(), key=lambda x: x.date, reverse=True)
