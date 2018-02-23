@@ -1,45 +1,52 @@
 import itertools
 
 
-class MemberStore():
-    members = []
-    last_id = 1
-
-    def add(self, member):
-        member.id = MemberStore.last_id
-        MemberStore.members.append(member)
-        MemberStore.last_id += 1
+class BaseStore():
+    def __init__(self, data_provider, last_id):
+        self._data_provider = data_provider
+        self._last_id = last_id
 
     def get_all(self):
-        return MemberStore.members
+        return self._data_provider
+
+    def add(self, item_instance):
+        item_instance.id = self._last_id
+        self._data_provider.append(item_instance)
+        self._last_id += 1
 
     def get_by_id(self, id):
-        all_members = self.get_all()
         result = None
-        for member in all_members:
-            if id == member.id:
-                result = member
+        for item_instance in self._data_provider:
+            if id == item_instance.id:
+                result = item_instance
                 break
         return result
 
-    def get_by_name(self, member_name):
-        return (member for member in self.get_all() if member.name == member_name)
+    def update(self, instance):
+        for index, instance_to_update in enumerate(self._data_provider):
+            if instance.id == instance_to_update.id:
+                self._data_provider[index] = instance
+                break
 
-    def entity_exists(self, member):
+    def delete(self, id):
+        self._data_provider.remove(self.get_by_id(id))
+
+    def entity_exists(self, instance):
         result = True
-        if self.get_by_id(member.id) is None:
+        if self.get_by_id(instance.id) is None:
             result = False
         return result
 
-    def delete(self, id):
-        MemberStore.members.remove(self.get_by_id(id))
 
-    def update(self, member):
-        all_members = self.get_all()
-        for index, member_to_update in enumerate(all_members):
-            if member.id == member_to_update.id:
-                self.members[index] = member
-                break
+class MemberStore(BaseStore, object):
+    members = []
+    last_id = 1
+
+    def __init__(self):
+        super(MemberStore, self).__init__(MemberStore.members, MemberStore.last_id)
+
+    def get_by_name(self, member_name):
+        return (member for member in self.get_all() if member.name == member_name)
 
     def get_members_with_posts(self, all_posts):
         all_members = self.get_all()
@@ -49,45 +56,13 @@ class MemberStore():
         for member in all_members:
             yield member
 
-
     def get_top_two(self, all_posts):
         return sorted(self.get_members_with_posts(all_posts), key=lambda x: len(x.posts), reverse=True)[:2]
 
 
-class PostStore():
+class PostStore(BaseStore, object):
     posts = []
     last_id = 1
 
-    def add(self, post):
-        post.id = PostStore.last_id
-        PostStore.posts.append(post)
-        PostStore.last_id += 1
-
-    def get_all(self):
-        return PostStore.posts
-
-    def get_by_id(self, id):
-        all_posts = self.get_all()
-        result = None
-        for post in all_posts:
-            if id == post.id:
-                result = post
-                break
-        return result
-
-    def entity_exists(self, post):
-        result = True
-        if self.get_by_id(post.id) is None:
-            result = False
-        return result
-
-    def delete(self, id):
-        PostStore.posts.remove(self.get_by_id(id))
-
-    def update(self, post):
-        all_posts = self.get_all()
-
-        for index, post_to_update in enumerate(all_posts):
-            if post.id == post_to_update.id:
-                self.posts[index] = post
-                break
+    def __init__(self):
+        super(PostStore, self).__init__(PostStore.posts, PostStore.last_id)
