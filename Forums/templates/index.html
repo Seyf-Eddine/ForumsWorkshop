@@ -3,25 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to Omac</title>
+    <style>
+        * {
+            margin : 20px 0 0 0
+        }
+        header {
+            position: relative;
+            width: 100%;
+            text-align: center
+        }
+        header ul {
+            list-style: none;
+            position: relative;
+            left:30%
+        }
+        header ul li {
+            display: inline;
+            padding: 15px;
+            cursor: pointer
+        }
+        header ul li.profile {
+            margin-right:10px;
+            border: solid 1px #000;
+            border-radius: 150%
+        }
+        header ul li.members:hover {
+            text-decoration: underline
+        }
+        add {
+            position: relative;
+            left: 80%;
+            border: solid 1px #000;
+            padding: 5px;
+            margin-right: 50px;
+            cursor: pointer
+        }
+        add:hover {
+            background-color: #d3d3d3;
+            color: #FFF;
+            text-weight: bold
+        }
+        table {
+            margin: auto;
+            position: relative;
+        }
+        table thead{
+            font-weight: bold
+        }
+        td {
+            width: 20px;
+            text-align: center;
+            border-bottom: solid 1px #e3e3e3;
+            padding: 10px
+        }
+        td a {
+            text-decoration: none
+        }
+        td a:hover {
+            text-decoration: none;
+            color: red
+        }
+        td.title {
+            width: 500px;
+            text-align: left
+        }
+    </style>
 </head>
 <body>
-    <header style="width:100%; text-align:center">
-        <h3>One Million Arab Coders</h3>
-        <div style="float:right; border:solid 1px #000; padding:5px; margin-right:50px">Create new</div>
+    <header>
+        <h1>One Million Arab Coders</h1>
+        <ul>
+            <li class="profile">Profile</li>
+            <li class="members">Member's list</li>
+        </ul>
     </header>
-    <div>
+    <br />
+    <div id="container">
+        <add>Create new +</add>
+        <br /> <br />
         <table>
-            <thead style="font-weight:bold">
-                <td style="width : 700px">Title</td> <!--> <td style="width : 20px">Edit</td> <!--> <td style="width : 20px">Delete</td>
+            <thead>
+                <td class="title">Title</td> <!--> <td>Edit</td> <!--> <td>Delete</td>
+                <td>Views</td> <!--> <td>Comments</td>
             </thead>
             <tr>
-                <td style="width : 700px">post 1</td> <!--> <td style="width : 20px"><a href="#">edit</a></td> <!--> <td style="width : 20px"><a href="#">del</a></td>
+                <td class="title">post 1</td> <!--> <td><a href="#">edit</a></td> <!--> <td><a href="#">del</a></td>
+                <td>117</td> <!--> <td>20</td>
             </tr>
             <tr>
-                <td style="width : 700px">post 2</td> <!--> <td style="width : 20px"><a href="#">edit</a></td> <!--> <td style="width : 20px"><a href="#">del</a></td>
+                <td class="title">post 2</td> <!--> <td><a href="#">edit</a></td> <!--> <td><a href="#">del</a></td>
+                <td>13</td> <!--> <td>1</td>
             </tr>
             <tr>
-                <td style="width : 700px">post 3</td> <!--> <td style="width : 20px"><a href="#">edit</a></td> <!--> <td style="width : 20px"><a href="#">del</a></td>
+                <td class="title">post 3</td> <!--> <td><a href="#">edit</a></td> <!--> <td><a href="#">del</a></td>
+                <td>83</td> <!--> <td>53</td>
             </tr>
         </table>
     </div>
