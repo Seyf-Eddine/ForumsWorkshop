@@ -6,7 +6,6 @@ member_store = MemberStore()
 post_store = PostStore()
 
 app = Flask(__name__)
-seed_stores(member_store, post_store)
 
 from forums.views import *
 
